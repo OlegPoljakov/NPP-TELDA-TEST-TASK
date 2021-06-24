@@ -6,6 +6,8 @@ import com.example.demo.mapper.RegionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,19 +25,21 @@ public class RegionController {
     }
 
     @GetMapping(path = "/all")
-    public List<Region> getRegions(){
-        List<Region> regions = regionService.findAll();
+    ResponseEntity<List<Region>> getRegions(){
+    List<Region> regions = regionService.findAll();
         if (regions.isEmpty()){
             throw new ApiRequestException("No regions in the database");
         }
         else {
-            return regions;
+            //return regions;
+            return new ResponseEntity<>(
+                    regions, HttpStatus.OK);
         }
 
     }
 
     @GetMapping(path = "/new")
-    public void newRegion(@RequestParam("region") String region, @RequestParam("shrt") String shrt){
+    ResponseEntity<String> newRegion(@RequestParam("region") String region, @RequestParam("shrt") String shrt){
         if (regionService.getByName(region).isPresent()){
             throw new ApiRequestException("This region is already in the database");
         }
@@ -44,39 +48,43 @@ public class RegionController {
             newregion.setName(region);
             newregion.setShort_name(shrt);
             regionService.insert(newregion);
+            return new ResponseEntity<>("New region added", HttpStatus.OK);
         }
     }
 
     @CacheEvict(cacheNames = "regions", key = "#id")
     @DeleteMapping(path = "/delete/{id}")
-    public void deleteRegion(@PathVariable(value="id") Integer id){
-        Optional<Region> requiredRegion = regionService.getById(id);
+    ResponseEntity<String> deleteRegion(@PathVariable(value="id") Integer id){
+    Optional<Region> requiredRegion = regionService.getById(id);
         if (requiredRegion.isEmpty()) {
             throw new ApiRequestException("No regions with this id exists in database");
         } else {
             regionService.deleteById(id);
+            return new ResponseEntity<>("Region deleted", HttpStatus.OK);
         }
     }
 
     @Cacheable(cacheNames = "regions", key = "#id")
     @GetMapping(path = "/get/{id}")
-    public Region getRegion(@PathVariable(value="id") Integer id){
+    ResponseEntity<Region> getRegion(@PathVariable(value="id") Integer id){
         Optional<Region> requiredRegion = regionService.getById(id);
         if (requiredRegion.isEmpty()) {
             return null;
         } else {
-            return requiredRegion.get();
+            //return requiredRegion.get();
+            return new ResponseEntity<>(requiredRegion.get(), HttpStatus.OK);
         }
     }
 
     @Cacheable(cacheNames = "regions", key = "#id")
     @GetMapping(path = "/update/{id}")
-    public void updateRegion(@PathVariable(value="id") Integer id, @RequestParam("region") String region, @RequestParam("shrt") String shrt){
+    ResponseEntity<String> updateRegion(@PathVariable(value="id") Integer id, @RequestParam("region") String region, @RequestParam("shrt") String shrt){
         Optional<Region> requiredRegion = regionService.getById(id);
         if (requiredRegion.isEmpty()) {
             throw new ApiRequestException("No regions with this id exist in database");
         } else {
             regionService.updateById(id, region, shrt);
+            return new ResponseEntity<>("Region updated", HttpStatus.OK);
         }
     }
 }
