@@ -6,19 +6,19 @@ Table conisits of id, name of region and short name of this region. It is possib
 
 Here links to test the application. I used Postman for it:
 
-1) Get all regions from database
+1) Get all regions from database (Get Mapping)
 http://localhost:8889/region/all
 
-2) Create new region in database
+2) Create new region in database (Get Mapping)
 http://localhost:8889/region/new?region=Moscow&shrt=Msc
 
-3) Delete region by id 
+3) Delete region by id (Delete Mapping)
 http://localhost:8889/region/delete/{id}
 
-4) Get region by id
+4) Get region by id (Get Mapping)
 http://localhost:8889/region/get/{id}
 
-5) Update region by id
-http://localhost:8889/region/update/{id} 
+5) Update region by id (Get Mapping)
+http://localhost:8889/region/update/{id}?region=Murmansk&shrt=Mrm
 
 My remarks: Lack of tests and no container. I'm going to make it a little bit later, at least for experience purpose.
