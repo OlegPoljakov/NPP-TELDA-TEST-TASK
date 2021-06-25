@@ -9,6 +9,7 @@ username=admin
 password=password
 
 JDBC URL: jdbc:h2:file:~/Npp-Telda-test-task/telda 
+
 Database connection window:
 
 ![image](https://user-images.githubusercontent.com/46780464/123412210-05085e80-d5ba-11eb-9f31-95b1cb49b546.png)
