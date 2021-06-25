@@ -5,7 +5,9 @@ REST service example with H2 database, MyBatis, Caching.
 Table conisits of id, name of region and short name of this region. It is possible to create, delete, update and get any region from database. Logging shows that caching works and allows not to request data from database if it has already beed fetched before.
 
 H2 database:
+
 username=admin
+
 password=password
 
 JDBC URL: 
