@@ -21,4 +21,4 @@ http://localhost:8889/region/get/{id}
 5) Update region by id
 http://localhost:8889/region/update/{id} 
 
-My remarks: Lack of tests and no container.
+My remarks: Lack of tests and no container. I'm going to make it a little bit later, at least for experience purpose.
