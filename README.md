@@ -8,6 +8,10 @@ H2 database:
 username=admin
 password=password
 
+Database connection window
+![image](https://user-images.githubusercontent.com/46780464/123412210-05085e80-d5ba-11eb-9f31-95b1cb49b546.png)
+
+
 Here links to test the application. I used Postman for it:
 
 1) Get all regions from database (Get Mapping)
