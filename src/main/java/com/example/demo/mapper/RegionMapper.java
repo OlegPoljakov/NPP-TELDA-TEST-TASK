@@ -9,7 +9,6 @@ import java.util.Optional;
 @Mapper
 public interface RegionMapper {
 
-
     @Select("select * from region")
     List<Region> findAll();
 
@@ -19,14 +18,13 @@ public interface RegionMapper {
     @Delete("delete from region where id = #{id};")
     void deleteById(Integer id);
 
-    //@Cacheable(value = "getById-cache", key = "'getByIdCache' + #id")
     @Select("select * from region where id = #{id};")
     Optional<Region> getById(Integer id);
 
-    //@Cacheable(value = "getByName-cache", key = "'getByNameCache' + #name")
     @Select("select * from region where name = #{name};")
     Optional<Region> getByName(String name);
 
     @Update("UPDATE region SET name=#{name}, shortname =#{shortname} WHERE id =#{id}")
     void updateById(Integer id, String name, String shortname);
+
 }

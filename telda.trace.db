@@ -122,3 +122,11 @@ SELECT LAST_INSERT_ID() [90022-200]
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:834)
+2021-06-25 11:18:45 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT*8[*] FROM REGION"
+Syntax error in SQL statement "SELECT*8[*] FROM REGION"; SQL statement:
+select*8 from region [42000-200]
+2021-06-25 11:52:45 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "REGIONЖ" не найдена
+Table "REGIONЖ" not found; SQL statement:
+TRUNCATE TABLE regionж [42102-200]
