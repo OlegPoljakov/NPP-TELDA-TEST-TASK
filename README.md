@@ -8,7 +8,8 @@ H2 database:
 username=admin
 password=password
 
-JDBC URL: jdbc:h2:file:~/Npp-Telda-test-task/telda 
+JDBC URL: 
+jdbc:h2:file:~/Npp-Telda-test-task/telda 
 
 Database connection window:
 
